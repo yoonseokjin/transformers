@@ -1,4 +1,4 @@
-# Copyright 2022 The HuggingFace Team. All rights reserved.
+# Copyright 2020 The HuggingFace Team. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,17 +11,13 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 from typing import TYPE_CHECKING
 
-from ...utils import OptionalDependencyNotAvailable, _LazyModule, is_torch_available
+from ....utils import OptionalDependencyNotAvailable, _LazyModule, is_torch_available
 
 
-_import_structure = {
-    "configuration_mctct": ["MCTCT_PRETRAINED_CONFIG_ARCHIVE_MAP", "MCTCTConfig"],
-    "feature_extraction_mctct": ["MCTCTFeatureExtractor"],
-    "processing_mctct": ["MCTCTProcessor"],
-}
-
+_import_structure = {"configuration_mmbt": ["MMBTConfig"]}
 
 try:
     if not is_torch_available():
@@ -29,18 +25,11 @@ try:
 except OptionalDependencyNotAvailable:
     pass
 else:
-    _import_structure["modeling_mctct"] = [
-        "MCTCT_PRETRAINED_MODEL_ARCHIVE_LIST",
-        "MCTCTForCTC",
-        "MCTCTModel",
-        "MCTCTPreTrainedModel",
-    ]
+    _import_structure["modeling_mmbt"] = ["MMBTForClassification", "MMBTModel", "ModalEmbeddings"]
 
 
 if TYPE_CHECKING:
-    from .configuration_mctct import MCTCT_PRETRAINED_CONFIG_ARCHIVE_MAP, MCTCTConfig
-    from .feature_extraction_mctct import MCTCTFeatureExtractor
-    from .processing_mctct import MCTCTProcessor
+    from .configuration_mmbt import MMBTConfig
 
     try:
         if not is_torch_available():
@@ -48,7 +37,7 @@ if TYPE_CHECKING:
     except OptionalDependencyNotAvailable:
         pass
     else:
-        from .modeling_mctct import MCTCT_PRETRAINED_MODEL_ARCHIVE_LIST, MCTCTForCTC, MCTCTModel, MCTCTPreTrainedModel
+        from .modeling_mmbt import MMBTForClassification, MMBTModel, ModalEmbeddings
 
 else:
     import sys
